@@ -22,12 +22,20 @@ public class MainActivity extends AppCompatActivity implements CameraBridgeViewB
 
     CameraBridgeViewBase cameraBridgeViewBase;
     BaseLoaderCallback baseLoaderCallback;
+    Boolean startCanny = false;
     int counter = 0;
 
 
     public void Canny(View Button)
     {
-
+         if (startCanny == false)
+         {
+             startCanny = true;
+         }
+         else
+         {
+             startCanny = false;
+         }
     }
 
 
@@ -66,9 +74,11 @@ public class MainActivity extends AppCompatActivity implements CameraBridgeViewB
           //  Imgproc.cvtColor(frame,frame,Imgproc.COLOR_RGBA2GRAY);
        // }
       //  counter = counter + 1;
-        Imgproc.cvtColor(frame,frame,Imgproc.COLOR_RGBA2GRAY);
-       // Imgproc.blur(frame,frame,new Size(3,3));
-        Imgproc.Canny(frame,frame,100,80);
+        if (startCanny == true) {
+            Imgproc.cvtColor(frame, frame, Imgproc.COLOR_RGBA2GRAY);
+            // Imgproc.blur(frame,frame,new Size(3,3));
+            Imgproc.Canny(frame, frame, 100, 80);
+        }
 
 
         return frame;
