@@ -5,18 +5,30 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.SurfaceView;
+import android.view.View;
 import android.widget.Toast;
 
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.CameraBridgeViewBase;
 import org.opencv.android.JavaCameraView;
 import org.opencv.android.OpenCVLoader;
+import org.opencv.core.Core;
 import org.opencv.core.Mat;
+import org.opencv.*;
+import org.opencv.core.Size;
+import org.opencv.imgproc.Imgproc;
 
 public class MainActivity extends AppCompatActivity implements CameraBridgeViewBase.CvCameraViewListener2 {
 
     CameraBridgeViewBase cameraBridgeViewBase;
     BaseLoaderCallback baseLoaderCallback;
+    int counter = 0;
+
+
+    public void Canny(View Button)
+    {
+
+    }
 
 
     @Override
@@ -25,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements CameraBridgeViewB
         setContentView(R.layout.activity_main);
 
         cameraBridgeViewBase = (JavaCameraView)findViewById(R.id.cameraView);
-        cameraBridgeViewBase.setVisibility(SurfaceView.INVISIBLE);
+        cameraBridgeViewBase.setVisibility(SurfaceView.VISIBLE);
         cameraBridgeViewBase.setCvCameraViewListener(this);
 
 
@@ -47,7 +59,19 @@ public class MainActivity extends AppCompatActivity implements CameraBridgeViewB
 
     @Override
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
-        return null;
+        Mat frame = inputFrame.rgba();
+        //if (counter % 2 == 0)
+       // {
+         //   Core.flip(frame,frame,1);
+          //  Imgproc.cvtColor(frame,frame,Imgproc.COLOR_RGBA2GRAY);
+       // }
+      //  counter = counter + 1;
+        Imgproc.cvtColor(frame,frame,Imgproc.COLOR_RGBA2GRAY);
+       // Imgproc.blur(frame,frame,new Size(3,3));
+        Imgproc.Canny(frame,frame,100,80);
+
+
+        return frame;
     }
 
     @Override
