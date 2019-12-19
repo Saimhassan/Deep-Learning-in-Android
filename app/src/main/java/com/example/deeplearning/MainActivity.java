@@ -23,10 +23,22 @@ public class MainActivity extends AppCompatActivity implements CameraBridgeViewB
     CameraBridgeViewBase cameraBridgeViewBase;
     BaseLoaderCallback baseLoaderCallback;
     Boolean startCanny = false;
+    Boolean startYolo = false;
     int counter = 0;
 
+    public void YOLO(View Button)
+    {
+       if (startYolo = false)
+       {
+           startYolo = true;
+       }
+       else {
+           startYolo = true;
+       }
+    }
 
-    public void Canny(View Button)
+
+  /*  public void Canny(View Button)
     {
          if (startCanny == false)
          {
@@ -38,6 +50,8 @@ public class MainActivity extends AppCompatActivity implements CameraBridgeViewB
          }
     }
 
+
+   */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

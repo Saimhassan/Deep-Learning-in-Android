@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:onClick="Canny"
-        android:text="Button" />
+        android:onClick="YOLO"
+        android:text="YOLO" />
 
 </RelativeLayout>
